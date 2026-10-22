@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Оберіг</title>
+<style>
+:root{--bg:#f2f2f7;--glass:rgba(255,255,255,.64);--line:rgba(60,60,67,.18);--ink:#111;--mute:#6c6c70;--blue:#007aff;--red:#ff3b30;--org:#ff9500;--grn:#34c759;--fill:rgba(118,118,128,.12);--b1:#9cc7ff;--b2:#ffd9a8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--glass:rgba(34,36,44,.58);--line:rgba(235,235,245,.18);--ink:#f5f5f7;--mute:#98989f;--blue:#0a84ff;--red:#ff453a;--org:#ff9f0a;--grn:#30d158;--fill:rgba(118,118,128,.28);--b1:#12315f;--b2:#4a2a08}}
+:root[data-theme="dark"]{--bg:#000;--glass:rgba(34,36,44,.58);--line:rgba(235,235,245,.18);--ink:#f5f5f7;--mute:#98989f;--blue:#0a84ff;--red:#ff453a;--org:#ff9f0a;--grn:#30d158;--fill:rgba(118,118,128,.28);--b1:#12315f;--b2:#4a2a08}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;color:var(--ink);background:var(--bg);font:17px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Inter,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(60% 40% at 15% 8%,var(--b1),transparent 70%),radial-gradient(55% 40% at 90% 30%,var(--b2),transparent 70%),radial-gradient(60% 40% at 30% 95%,var(--b1),transparent 70%)}
+main{max-width:640px;margin:0 auto;padding:12px 16px 120px}
+.tab{display:none}.tab.on{display:block}
+h1{font-size:34px;line-height:1.1;font-weight:700;letter-spacing:-.022em;margin:14px 0 4px}
+.lead{color:var(--mute);margin:0 0 16px;font-size:15px}
+h2{font-size:13px;font-weight:600;color:var(--mute);margin:22px 12px 6px;text-transform:none;letter-spacing:.01em}
+.g{background:var(--glass);-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);border:.5px solid var(--line);border-radius:20px;box-shadow:0 8px 30px rgba(0,0,0,.07)}
+.pad{padding:16px}
+.sos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sos a{padding:14px 6px;text-align:center;border-radius:18px;background:var(--red);color:#fff;font-weight:700;font-size:22px;text-decoration:none}
+.sos small{display:block;font-weight:500;font-size:12px;opacity:.9}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{font:inherit;text-align:left;color:var(--ink);padding:14px;min-height:96px;border:.5px solid var(--line);border-radius:20px;display:flex;flex-direction:column;justify-content:space-between}
+.tile b{font-size:17px}.tile i{font-style:normal;font-size:13px;color:var(--mute)}
+.dot{width:12px;height:12px;border-radius:50%;display:block}
+details{border-top:.5px solid var(--line)}
+details:first-child{border-top:0}
+summary{list-style:none;cursor:pointer;padding:15px 16px;font-weight:600;display:flex;justify-content:space-between;align-items:center;min-height:50px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";width:8px;height:8px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:rotate(-45deg);transition:transform .2s}
+details[open]>summary::after{transform:rotate(45deg)}
+.in{padding:0 16px 16px;font-size:16px}
+.in h3{font-size:15px;margin:14px 0 4px}
+.in ul{margin:4px 0;padding-left:20px}.in li{margin:3px 0}.in p{margin:6px 0}
+.warn{background:rgba(255,59,48,.12);border-radius:12px;padding:10px 12px;margin:10px 0;font-size:15px}
+.cl{list-style:none;padding:0!important}
+.cl li{border-top:.5px solid var(--line);margin:0!important}
+.cl label{display:flex;gap:12px;padding:11px 0;align-items:center}
+.cl input{appearance:none;-webkit-appearance:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--mute);flex:none;margin:0}
+.cl input:checked{background:var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");border-color:var(--blue)}
+.cl input:checked+span{color:var(--mute)}
+input[type=text],input[type=time],select,textarea{font:inherit;width:100%;padding:12px;border:0;border-radius:12px;background:var(--fill);color:var(--ink);margin:4px 0}
+textarea{min-height:76px}
+.btn{font:inherit;font-weight:600;padding:12px 18px;border:0;border-radius:14px;background:var(--blue);color:#fff;min-height:46px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn.s{background:var(--fill);color:var(--blue)}.btn.r{background:var(--red)}.btn.w{width:100%}
+.row{display:flex;gap:8px;align-items:center;margin:8px 0;flex-wrap:wrap}.row>*{flex:1}
+.ln{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 16px;border-top:.5px solid var(--line);text-decoration:none;color:var(--ink)}
+.ln:first-child{border-top:0}.ln small{display:block;color:var(--mute);font-size:13px}.ln b{color:var(--blue);white-space:nowrap}
+.pl{display:flex;gap:12px;align-items:center;padding:12px 16px;border-top:.5px solid var(--line)}
+.pl:first-child{border-top:0}.pl>div{flex:1;min-width:0}.pl small{color:var(--mute);display:block;font-size:13px}.pl a{color:var(--blue);text-decoration:none;font-weight:600;font-size:15px}
+.x{background:none;border:0;color:var(--red);font:inherit;padding:8px}
+#rd{display:block;width:100%;max-width:340px;margin:0 auto;aspect-ratio:1}
+.nx{font-weight:600;color:var(--org)}
+.orb{width:130px;height:130px;border-radius:50%;margin:16px auto;background:linear-gradient(145deg,var(--blue),#5ac8fa);display:grid;place-items:center;color:#fff;font-weight:700;transition:transform 4s ease-in-out;box-shadow:0 10px 40px rgba(0,122,255,.35)}
+.orb.in{transform:scale(1.3)}.orb.out{transform:scale(.8);transition-duration:6s}
+@media(prefers-reduced-motion:reduce){.orb{transition:none}}
+nav{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:616px;margin:0 auto;display:flex;padding:6px;border-radius:26px;z-index:20}
+nav button{flex:1;font:inherit;font-size:11px;font-weight:600;background:none;border:0;color:var(--mute);padding:7px 2px;border-radius:20px;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav button.on{color:var(--blue);background:var(--fill)}
+.foot{color:var(--mute);font-size:13px;margin:18px 12px}
+button:focus-visible,summary:focus-visible,input:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+
+<section class="tab on" id="t-now">
+<h1>Оберіг</h1>
+<p class="lead">Тепло, світло, тривоги, перша допомога. Працює без інтернету.</p>
+<div class="sos"><a href="tel:112">112<small>єдиний</small></a><a href="tel:103">103<small>швидка</small></a><a href="tel:101">101<small>рятувальники</small></a></div>
+<div class="row" style="margin-top:12px"><button class="btn r w" id="safe">Я в безпеці. Повідомити близьким</button></div>
+<h2>Що робити зараз</h2>
+<div class="tiles">
+<button class="tile g" data-go="alarm"><span class="dot" style="background:var(--red)"></span><b>Тривога</b><i>куди йти</i></button>
+<button class="tile g" data-go="aid"><span class="dot" style="background:var(--org)"></span><b>Перша допомога</b><i>кров, опіки, CO</i></button>
+<button class="tile g" data-go="cold"><span class="dot" style="background:var(--blue)"></span><b>Холодно</b><i>тепло без світла</i></button>
+<button class="tile g" data-go="calm"><span class="dot" style="background:var(--grn)"></span><b>Страшно</b><i>заспокоїтись</i></button>
+</div>
+<h2>Пам’ятки</h2>
+<div class="g">
+<details id="alarm"><summary>Тривога</summary><div class="in"><ul>
+<li>Йдіть до укриття. Якщо його немає, застосуйте «правило двох стін»: місце між двома капітальними стінами, подалі від вікон.</li>
+<li>Не стійте біля вікон і не виходьте на балкон.</li>
+<li>У машині: зупиніться, вийдіть, сховайтесь подалі від авто.</li>
+<li>Візьміть тривожну валізу, воду, ліки, павербанк.</li>
+<li>Після відбою напишіть близьким: «Я в безпеці».</li></ul>
+<div class="warn">Орієнтуйтесь на офіційні оповіщення. Застосунок їх не замінює.</div></div></details>
+<details id="aid"><summary>Перша допомога</summary><div class="in">
+<h3>Сильна кровотеча</h3><ul><li>Телефонуйте 103 або 112.</li><li>Притисніть рану кулаком через чисту тканину і тримайте.</li><li>Якщо кров б’є з руки чи ноги, накладіть джгут на 5–7 см вище рани. Запишіть час. Не послаблюйте до приїзду лікарів.</li></ul>
+<h3>Опік</h3><ul><li>Прохолодна вода 10–20 хв, чиста волога тканина.</li><li>Не мастіть жиром, не проколюйте пухирі.</li></ul>
+<h3>Чадний газ (CO)</h3><ul><li>Головний біль, нудота, сонливість: негайно на свіже повітря, 103 або 112.</li></ul>
+<h3>Непритомність</h3><ul><li>На спину, ноги вгору. Не дихає: 103 і натискання на центр грудної клітки, 100–120 разів на хвилину.</li></ul></div></details>
+<details id="cold"><summary>Тепло без світла</summary><div class="in">
+<div class="warn"><b>Ніколи</b> не грійтесь газовою плитою чи грилем у закритому приміщенні. Свічки не залишайте без нагляду. Тримайте вікно трохи прочиненим при відкритому вогні.</div>
+<ul><li>Живіть в одній кімнаті: легше зберегти тепло.</li><li>Закрийте вікна ковдрою або плівкою, заклейте щілини.</li><li>Одягайтесь шарами, шапка і шкарпетки обов’язково.</li><li>Пляшки з гарячою водою в ліжко.</li></ul>
+<ul class="cl" data-list="warm"></ul></div></details>
+</div>
+</section>
+
+<section class="tab" id="t-map">
+<h1>Укриття</h1>
+<p class="lead">Ваші місця працюють офлайн. Радар показує напрямок і відстань за GPS без інтернету.</p>
+<div class="g pad"><canvas id="rd" width="680" height="680" aria-label="Радар укриттів"></canvas><p class="lead" id="gs" style="text-align:center;margin:8px 0 0">Визначаємо місцезнаходження…</p></div>
+<h2>Мої місця</h2>
+<div class="g" id="pls"></div>
+<h2>Додати місце</h2>
+<div class="g pad">
+<input type="text" id="pn" placeholder="Назва (підвал, метро, паркінг)" aria-label="Назва місця">
+<select id="pt" aria-label="Тип"><option value="s">Укриття</option><option value="m">Метро</option><option value="p">Пункт незламності</option><option value="h">Лікарня або аптека</option><option value="v">Волонтерський центр</option></select>
+<input type="text" id="pc" placeholder="Координати: 50.4501, 30.5234" aria-label="Координати" inputmode="decimal">
+<div class="row"><button class="btn s" id="here">Моє місце зараз</button><button class="btn" id="add">Зберегти</button></div>
+<p class="lead" style="margin:6px 0 0">Порада: стоячи біля входу в укриття, натисніть «Моє місце зараз» і збережіть.</p>
+</div>
+<p class="foot">Повна карта зі світовими даними потребує інтернету. Відкрити поточне місце у картах можна кнопкою «Карта» біля кожного пункту.</p>
+</section>
+
+<section class="tab" id="t-winter">
+<h1>Зима</h1>
+<p class="lead">Світло, тепло, вода, батарея.</p>
+<div class="g">
+<details><summary>Батарея і зарядка</summary><div class="in"><ul><li>Режим економії, мінімальна яскравість.</li><li>Вимкніть Wi-Fi, Bluetooth, оновлення у фоні.</li><li>Дзвінки і SMS витрачають менше, ніж відео.</li><li>Тримайте телефон у теплі.</li></ul><ul class="cl" data-list="batt"></ul></div></details>
+<details><summary>Холод і здоров’я</summary><div class="in"><h3>Переохолодження</h3><ul><li>Тремтіння, млявість, плутана мова.</li><li>У тепло, зніміть мокре, укутайте, дайте теплий солодкий напій. Алкоголь не давайте. Сильна сонливість: 103.</li></ul><h3>Обмороження</h3><ul><li>Біла нечутлива шкіра: зігрівайте поступово, не тріть снігом, не грійте біля вогню, накрийте стерильною пов’язкою.</li></ul><div class="warn">Найбільший ризик у літніх і дітей. Перевіряйте їх частіше.</div></div></details>
+<details><summary>Вода і їжа без електрики</summary><div class="in"><ul><li>2 л води на людину на добу, на 3 доби.</li><li>Ванна або відра з технічною водою до відключення.</li><li>Щоб труби не замерзли, залиште тонкий струмінь і утепліть їх.</li><li>Продукти на холодний балкон.</li></ul><ul class="cl" data-list="water"></ul></div></details>
+<details><summary>Рідкісні лайфхаки</summary><div class="in">
+<h3>Тепло в кімнаті</h3><ul>
+<li><b>Шатро з ковдр.</b> Накрийте ковдрою два стільці чи каркас і залізьте всередину. Власне тепло тіла швидко прогріває малий об’єм.</li>
+<li><b>Бульбашкова плівка на вікно.</b> Змочіть скло водою і притисніть плівку гладкою стороною. Тримається без клею і суттєво зменшує втрати тепла.</li>
+<li><b>Фольга за батареєю.</b> Коли опалення є, прикріпіть фольгу блискучим боком до кімнати, і тепло відбиватиметься від стіни.</li>
+<li><b>Валик у порога.</b> Згорнута ковдра чи рушник біля дверей і щілин зупиняє протяг.</li>
+<li><b>Килим чи ковдра на зовнішню стіну.</b> Ліжко ставте подалі від неї.</li>
+<li><b>Двері в кімнату зачиняйте.</b> Не гріється той, хто відчиняє їх щохвилини.</li>
+</ul>
+<h3>На тілі</h3><ul>
+<li><b>Шарами, не товсто.</b> Три тонкі шари тепліші за один товстий. Ближче до тіла вовна чи синтетика, бавовна гірша: вона вбирає піт і холодить.</li>
+<li><b>Не тісно.</b> Тісне взуття і шкарпетки погіршують кровообіг, ноги мерзнуть більше.</li>
+<li><b>Шия, голова, кисті.</b> Шарф і шапка вдома зберігають більше тепла, ніж ще один светр.</li>
+<li><b>Пляшка з гарячою водою</b> (не окріп) у ліжко чи під ковдру. Загорніть у рушник, щоб не обпектись.</li>
+<li><b>Дитина.</b> Перевіряйте тепло дотиком до шиї чи спини, а не рук. Руки холодніші за решту тіла і вводять в оману.</li>
+<li><b>Їжа на ніч.</b> Горіхи, шоколад, хліб з маслом дають тілу паливо для опалення вночі. Алкоголь лише створює відчуття тепла і виводить його з тіла.</li>
+</ul>
+<h3>Батарея і зв’язок</h3><ul>
+<li><b>Телефон у внутрішній кишені.</b> Тепло тіла зберігає заряд, на морозі батарея сідає вдвічі швидше.</li>
+<li><b>Не заряджайте павербанк на морозі.</b> Літієві батареї псуються. Спершу зігрійте його до кімнатної температури.</li>
+<li><b>Режим польоту,</b> коли сигналу немає. Інакше телефон безперервно шукає мережу і швидко розряджається. Вмикайте на час, коли не чекаєте дзвінків.</li>
+<li><b>Темна тема і чорні шпалери</b> економлять заряд на екранах OLED.</li>
+<li><b>Заздалегідь завантажте офлайн-карти</b> району та потрібні документи, поки є інтернет.</li>
+<li><b>Заряд авто.</b> Заряджайтесь від автомобіля лише на відкритому повітрі. Двигун працює в закритому гаражі і виробляє чадний газ.</li>
+</ul>
+<h3>Світло</h3><ul>
+<li><b>Лампа з пляшки.</b> Поставте ліхтарик телефона світлом вгору під пляшку з водою. Вона розсіює світло по кімнаті.</li>
+<li><b>Світлі стіни і дзеркала</b> відбивають слабке світло. Ставте ліхтарик перед ними.</li>
+</ul>
+<h3>Вода і їжа</h3><ul>
+<li><b>Пляшки з водою в морозильну камеру</b> перед відключенням. Потім вони тримають холод у холодильнику, а розтанувши, дають питну воду.</li>
+<li><b>Двері холодильника не відчиняйте.</b> Заповнений тримає холод близько доби, морозильна камера до двох.</li>
+<li><b>Труби.</b> Відчиніть дверцята шафок під раковиною і залиште тонкий струмінь води.</li>
+<li><b>Термос увечері.</b> Окріп, налитий ввечері, вранці ще гарячий для чаю.</li>
+</ul>
+<div class="warn"><b>Не робіть так:</b> не гріється від мангала, газової плити і духовки в закритій кімнаті. Не ставте свічки під горщики як «обігрівач»: вони майже не гріють, але дають пожежу і чад. Не вмикайте бензиновий генератор в квартирі, гаражі чи балконі.</div>
+</div></details>
+<details id="plan"><summary>Графік відключень</summary><div class="in"><p>Додайте години відключень. Покажемо, коли зарядити все.</p><div class="row"><input type="time" id="tm" aria-label="Година"><button class="btn" id="ta">Додати</button></div><p class="nx" id="nx"></p><div id="tl"></div></div></details>
+</div>
+</section>
+
+<section class="tab" id="t-help">
+<h1>Допомога</h1>
+<p class="lead">Гарячі лінії, волонтери, сім’я і сусіди.</p>
+<h2>Гарячі лінії</h2>
+<div class="g">
+<a class="ln" href="tel:15-47"><span>Урядова екстрена психологічна допомога<small>цілодобово</small></span><b>15-47</b></a>
+<a class="ln" href="tel:1545"><span>Урядова гаряча лінія<small>цілодобово</small></span><b>1545</b></a>
+<a class="ln" href="tel:7333"><span>Lifeline Ukraine, кризова підтримка<small>цілодобово, безкоштовно</small></span><b>7333</b></a>
+<a class="ln" href="tel:0800100102"><span>Національна психологічна асоціація<small>щодня 10:00–20:00</small></span><b>0 800 100 102</b></a>
+<a class="ln" href="tel:116123"><span>Ла Страда: насильство<small>цілодобово</small></span><b>116 123</b></a>
+<a class="ln" href="tel:116111"><span>Лінія для дітей і молоді<small>0 800 500 225</small></span><b>116 111</b></a>
+<a class="ln" href="tel:0800213103"><span>Безоплатна правова допомога</span><b>0 800 213 103</b></a>
+<a class="ln" href="tel:102"><span>Поліція</span><b>102</b></a>
+</div>
+<p class="foot">Номери зібрані з відкритих джерел. Режим роботи може змінюватись.</p>
+<h2>Волонтерська допомога</h2>
+<div class="g">
+<details><summary>Мені потрібна допомога</summary><div class="in"><ul><li>Напишіть у місцеву волонтерську групу району чи будинку. Вкажіть: що потрібно, адресу, телефон.</li><li>Для літніх і маломобільних: запитайте про доставку води, ліків і їжі та соціальний патронаж у міській раді.</li><li>Гаряча лінія уряду 1545 підкаже, куди звернутись у вашому місті.</li></ul></div></details>
+<details><summary>Я хочу допомогти</summary><div class="in"><ul><li>Перевірте найближчого літнього сусіда: чи є тепло, вода, ліки.</li><li>Запропонуйте зарядити телефон чи погріти воду.</li><li>Зберіть теплі речі, павербанки, ліхтарики. Віддайте у місцевий волонтерський центр.</li><li>Допомагайте лише через перевірені організації та знайомі групи.</li></ul></div></details>
+</div>
+<h2>Пункт незламності</h2>
+<div class="g pad"><input type="text" id="pu" placeholder="Адреса найближчого пункту" aria-label="Пункт незламності"><ul class="cl" data-list="go" style="margin-top:8px"></ul></div>
+<h2>Сімейний план</h2>
+<div class="g pad">
+<input type="text" id="f1" placeholder="Де зустрічаємось, якщо розійшлись" aria-label="Місце зустрічі">
+<input type="text" id="f2" placeholder="Хто кому телефонує першим" aria-label="Хто телефонує">
+<input type="text" id="ct" placeholder="Телефони близьких через кому: +380…, +380…" aria-label="Телефони близьких" inputmode="tel">
+<textarea id="nb" placeholder="Сусіди, яких треба перевірити" aria-label="Сусіди"></textarea>
+<div class="row"><button class="btn s" id="pr">Роздрукувати картку</button></div>
+</div>
+</section>
+
+<section class="tab" id="t-calm">
+<h1>Спокій</h1>
+<p class="lead">Коли страшно чи не спиться.</p>
+<div class="g pad" style="text-align:center"><p style="margin:0">Вдих 4 с, пауза 4 с, видих 6 с</p><div class="orb" id="orb">Готові</div><button class="btn" id="bs">Почати</button></div>
+<h2>5-4-3-2-1</h2>
+<div class="g pad"><ul style="margin:0;padding-left:20px"><li>5 речей, які бачите</li><li>4, яких можете торкнутись</li><li>3 звуки</li><li>2 запахи</li><li>1 смак</li></ul></div>
+<h2>Для сну</h2>
+<div class="g pad"><p style="margin:0">Темно, тепло, телефон осторонь, теплий напій і повільне дихання. Страх у такий час нормальний. Якщо тривога не відпускає, зателефонуйте на 15-47 або 7333.</p></div>
+</section>
+
+<section class="tab" id="t-fun"><h1>Посмішка</h1><p class="lead">Короткий перепочинок. Натисніть «Ще».</p><div class="g pad" style="text-align:center"><div id="je" style="font-size:72px;line-height:1.1"></div><p id="jt" style="font-size:20px;font-weight:600;margin:12px 0"></p><p class="lead" id="jn" style="margin:0"></p><div class="row"><button class="btn s" id="js">Поділитись</button><button class="btn" id="jm">Ще</button></div></div><h2>Добре слово</h2><div class="g pad"><p id="kw" style="font-size:18px;margin:0 0 10px"></p><button class="btn s w" id="kb">Ще одне</button></div></section>
+
+<p class="foot">Інформація загальна. Вона не замінює лікаря, рятувальників та офіційні оповіщення.</p>
+</main>
+
+<nav class="g" aria-label="Розділи">
+<button data-tab="now" class="on"><svg viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Зараз</button>
+<button data-tab="map"><svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Укриття</button>
+<button data-tab="winter"><svg viewBox="0 0 24 24"><path d="M12 3v18M4.5 7.5l15 9M19.5 7.5l-15 9"/></svg>Зима</button>
+<button data-tab="help"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.500-7 10-7 10z"/></svg>Допомога</button>
+<button data-tab="calm"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8.500 13.500c1 1.500 5.500 1.500 7 0"/></svg>Спокій</button>
+<button data-tab="fun"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14c1 2 7 2 8 0M9 9.500v.5M15 9.500v.5"/></svg>Посмішка</button>
+</nav>
+
+<script>
+var L={warm:["Теплі ковдри, спальники","Термобілизна, шапка, шкарпетки","Грілки або пляшки для води","Плівка на вікно","Ліхтарики і батарейки"],
+batt:["Телефон","Павербанк","Ліхтарики та лампи","Навушники і кабелі","Радіо на батарейках"],
+water:["Питна вода на 3 доби","Технічна вода","Консерви, крупи, сухарі","Термос з гарячою водою"],
+go:["Документи і гроші","Теплий одяг і ковдра","Ліки і аптечка","Чай, їжа, кружка","Іграшка чи книга для дитини"]};
+var S={};try{S=JSON.parse(localStorage.getItem("zs2")||"{}")}catch(e){}
+S.c=S.c||{};S.t=S.t||[];S.p=S.p||[];
+function sv(){try{localStorage.setItem("zs2",JSON.stringify(S))}catch(e){}}
+function $(i){return document.getElementById(i)}
+function tab(n){document.querySelectorAll(".tab").forEach(function(s){s.classList.toggle("on",s.id=="t-"+n)});document.querySelectorAll("nav button").forEach(function(b){b.classList.toggle("on",b.dataset.tab==n)});window.scrollTo(0,0);if(n=="map")rd()}
+document.querySelectorAll("nav button").forEach(function(b){b.onclick=function(){tab(b.dataset.tab)}});
+document.querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){var d=$(b.dataset.go);if(b.dataset.go=="calm")return tab("calm");d.open=true;d.scrollIntoView({behavior:"smooth",block:"center"})}});
+document.querySelectorAll("[data-list]").forEach(function(ul){var k=ul.dataset.list;L[k].forEach(function(t,i){var id=k+i,li=document.createElement("li"),lb=document.createElement("label"),cb=document.createElement("input"),sp=document.createElement("span");cb.type="checkbox";cb.checked=!!S.c[id];sp.textContent=t;cb.onchange=function(){S.c[id]=cb.checked;sv()};lb.appendChild(cb);lb.appendChild(sp);li.appendChild(lb);ul.appendChild(li)})});
+["pu","f1","f2","ct","nb"].forEach(function(id){var e=$(id);e.value=S[id]||"";e.oninput=function(){S[id]=e.value;sv()}});
+$("safe").onclick=function(){var n=(S.ct||"").replace(/[^\d+,]/g,"");location.href="sms:"+n+"?&body="+encodeURIComponent("Я в безпеці.")};
+$("pr").onclick=function(){window.print()};
+
+function two(n){return(n<10?"0":"")+n}function mn(s){var p=s.split(":");return+p[0]*60+ +p[1]}
+function tl(){S.t.sort();var b=$("tl");b.innerHTML="";S.t.forEach(function(t,i){var d=document.createElement("div");d.className="pl";d.style.padding="8px 0";d.innerHTML="<div></div>";d.firstChild.textContent="Відключення о "+t;var x=document.createElement("button");x.className="x";x.textContent="Видалити";x.onclick=function(){S.t.splice(i,1);sv();tl()};d.appendChild(x);b.appendChild(d)});nx()}
+function nx(){var e=$("nx");if(!S.t.length){e.textContent="";return}var n=new Date(),c=n.getHours()*60+n.getMinutes(),b=null,df=1e9;S.t.forEach(function(t){var d=(mn(t)-c+1440)%1440;if(d<df){df=d;b=t}});var h=Math.floor(df/60),ch=(mn(b)-60+1440)%1440;e.textContent="Наступне о "+b+" (за "+(h?h+" год ":"")+df%60+" хв). Зарядіть усе до "+two(Math.floor(ch/60))+":"+two(ch%60)+"."}
+$("ta").onclick=function(){var v=$("tm").value;if(v&&S.t.indexOf(v)<0){S.t.push(v);sv();tl()}};tl();setInterval(nx,30000);
+
+var me=null,TY={s:["Укриття","#ff3b30"],m:["Метро","#007aff"],p:["Пункт незламності","#ff9500"],h:["Лікарня або аптека","#34c759"],v:["Волонтерський центр","#af52de"]};
+function hv(a,b,c,d){var R=6371000,r=Math.PI/180,x=(c-a)*r,y=(d-b)*r,k=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*r)*Math.cos(c*r)*Math.sin(y/2)*Math.sin(y/2);return 2*R*Math.asin(Math.sqrt(k))}
+function br(a,b,c,d){var r=Math.PI/180,y=Math.sin((d-b)*r)*Math.cos(c*r),x=Math.cos(a*r)*Math.sin(c*r)-Math.sin(a*r)*Math.cos(c*r)*Math.cos((d-b)*r);return(Math.atan2(y,x)/r+360)%360}
+function dn(m){return m<1000?Math.round(m/10)*10+" м":(m/1000).toFixed(1)+" км"}
+function dr(b){return["пн","пн-сх","сх","пд-сх","пд","пд-зх","зх","пн-зх"][Math.round(b/45)%8]}
+function pls(){var o=$("pls");o.innerHTML="";if(!S.p.length){o.innerHTML='<div class="pl"><div><small>Поки порожньо. Додайте укриття, метро чи пункт незламності нижче.</small></div></div>';return}
+var a=S.p.map(function(p,i){return{p:p,i:i,d:me?hv(me[0],me[1],p.la,p.lo):null}});a.sort(function(x,y){return(x.d==null?1e12:x.d)-(y.d==null?1e12:y.d)});
+a.forEach(function(r){var p=r.p,d=document.createElement("div");d.className="pl";var c=document.createElement("span");c.className="dot";c.style.background=TY[p.t][1];var m=document.createElement("div");var n=document.createElement("b");n.textContent=p.n;var s=document.createElement("small");s.textContent=TY[p.t][0]+(r.d!=null?" · "+dn(r.d)+", "+dr(br(me[0],me[1],p.la,p.lo)):"");m.appendChild(n);m.appendChild(s);var l=document.createElement("a");l.href="https://maps.google.com/?q="+p.la+","+p.lo;l.target="_blank";l.rel="noopener";l.textContent="Карта";var x=document.createElement("button");x.className="x";x.textContent="×";x.setAttribute("aria-label","Видалити");x.onclick=function(){S.p.splice(r.i,1);sv();pls();rd()};d.appendChild(c);d.appendChild(m);d.appendChild(l);d.appendChild(x);o.appendChild(d)})}
+function rd(){var c=$("rd"),g=c.getContext("2d"),W=680,cx=W/2,cs=getComputedStyle(document.documentElement),ink=cs.getPropertyValue("--mute")||"#888";g.clearRect(0,0,W,W);
+var pts=S.p.filter(function(p){return me}).map(function(p){return{p:p,d:hv(me[0],me[1],p.la,p.lo),b:br(me[0],me[1],p.la,p.lo)}}).sort(function(a,b){return a.d-b.d}).slice(0,12);
+var mx=pts.length?Math.max(100,pts[Math.min(pts.length-1,4)].d*1.15):500;mx=Math.ceil(mx/100)*100;
+g.strokeStyle="rgba(128,128,140,.45)";g.fillStyle="rgba(128,128,140,.9)";g.lineWidth=2;g.font="600 24px -apple-system,sans-serif";g.textAlign="center";
+[1,.66,.33].forEach(function(f){g.beginPath();g.arc(cx,cx,cx*.9*f,0,7);g.stroke()});
+g.beginPath();g.moveTo(cx,20);g.lineTo(cx,W-20);g.moveTo(20,cx);g.lineTo(W-20,cx);g.stroke();g.fillText("Пн",cx,34);g.fillText(dn(mx),cx+cx*.9*.7+10,cx+cx*.9*.7+4-(cx*.9*.7)*0+0);
+g.fillStyle="#007aff";g.beginPath();g.arc(cx,cx,13,0,7);g.fill();g.strokeStyle="#fff";g.lineWidth=4;g.stroke();
+pts.forEach(function(q){var r=Math.min(q.d/mx,1)*cx*.9,a=q.b*Math.PI/180,x=cx+r*Math.sin(a),y=cx-r*Math.cos(a);g.fillStyle=TY[q.p.t][1];g.beginPath();g.arc(x,y,15,0,7);g.fill();g.strokeStyle="#fff";g.lineWidth=3;g.stroke();g.fillStyle="#fff";g.font="700 18px -apple-system,sans-serif";g.fillText(q.p.n.charAt(0).toUpperCase(),x,y+6)})}
+$("here").onclick=function(){if(me)$("pc").value=me[0].toFixed(5)+", "+me[1].toFixed(5);else $("gs").textContent="GPS недоступний. Введіть координати вручну."};
+$("add").onclick=function(){var n=$("pn").value.trim(),m=$("pc").value.match(/(-?\d+(?:[.,]\d+)?)\s*[,; ]\s*(-?\d+(?:[.,]\d+)?)/);if(!n||!m){$("gs").textContent="Вкажіть назву і координати.";return}S.p.push({n:n,t:$("pt").value,la:+m[1].replace(",","."),lo:+m[2].replace(",",".")});sv();$("pn").value="";$("pc").value="";pls();rd()};
+try{navigator.geolocation.watchPosition(function(p){me=[p.coords.latitude,p.coords.longitude];$("gs").textContent="GPS активний, точність ±"+Math.round(p.coords.accuracy)+" м";pls();rd()},function(){$("gs").textContent="GPS недоступний. Дозвольте доступ до геолокації."},{enableHighAccuracy:true,maximumAge:10000})}catch(e){$("gs").textContent="GPS недоступний."}
+pls();rd();
+
+var J=[["☕","Кава зранку як павербанк для людини: без неї працюємо на 3%."],["🔌","Світло дали! Усі біжать заряджати все: телефон, павербанк, лампи і надію."],["🐈","Кіт не мурчить, коли йому добре. Він просто ввімкнув вам опалення."],["🧦","Шкарпетки зникають у пралці не просто так. Вони шукають кращого життя."],["🛌","Ковдра о 6:00 ранку має силу тяжіння сильнішу за Земну."],["🍲","Борщ на другий день смачніший. Так і з проблемами: на другий день їх уже можна з’їсти."],["🐕","Пес зустрічає вас так, ніби ви повернулись з експедиції на Північний полюс. А ви виносили сміття."],["📱","Телефон: 1%. Я: «Ще 5 хвилин». Телефон: «Ну-ну»."],["🥶","Зимою одягнутись як капуста — це не мода, це стратегія."],["🍞","Дієта починається в понеділок. А в понеділок — у наступний."],["🧠","Мозок о 3:00 ночі: «Давай згадаємо, що ти сказав у 2009 році»."],["🚿","Співати в душі — не талант. Це акустика."],["🥔","Картопля — єдина, хто завжди підтримає: і смажена, і варена, і в мундирі."],["⏰","Будильник — єдиний, хто вірить, що я встану."],["🧣","Бабуся: «Одягни шапку». Мені 40. Шапка на місці."],["🍕","Я не їм після шостої. Я їм до шостої. І після."],["📶","Wi-Fi: «Підключено, без доступу до інтернету». Як і я до ранку."],["🦆","Качка не боїться холоду. У неї власний пуховик і жодних питань."],["🏃","Планував пробіжку. Пробіг лише очима по меню."],["🧘","Спокій — це коли чайник уже закипів, а ти вже не хочеш чаю."],["🕯️","Вечеря при свічках — романтика, поки не шукаєш другу шкарпетку."],["🐻","Ведмідь має правильний підхід до зими: проспати до весни."]];
+var K=["Ви витримуєте більше, ніж здається. Саме зараз.","Тепла чашка чаю — це теж маленька перемога.","Ви не самі. Хтось про вас зараз згадав.","Глибоко видихніть. Вже краще.","Сьогодні достатньо просто бути. Все інше почекає.","Українці вміють сміятись навіть у темряві. І це сила.","Напишіть комусь «Як ти?». Ви зробите чийсь день.","Дякуйте собі: ви справляєтесь."];
+var ji=Math.floor(Math.random()*J.length),ki=0;
+function jk(){$("je").textContent=J[ji][0];$("jt").textContent=J[ji][1];$("jn").textContent=(ji+1)+" / "+J.length}
+function kk(){$("kw").textContent=K[ki]}
+$("jm").onclick=function(){ji=(ji+1+Math.floor(Math.random()*(J.length-1)))%J.length;jk()};
+$("kb").onclick=function(){ki=(ki+1)%K.length;kk()};
+$("js").onclick=function(){var t=J[ji][0]+" "+J[ji][1];try{if(navigator.share){navigator.share({text:t});return}}catch(e){}try{navigator.clipboard.writeText(t);$("jn").textContent="Скопійовано"}catch(e){}};
+var SJ=["Життя як павербанк: усі згадують про нього, коли вже 1%.","Оптиміст: «Склянка наполовину повна». Я: «А хто її не помив?»","Кажуть, гроші не приносять щастя. Я б хотів перевірити це особисто.","Понеділок не вбиває. Він просто повільно знущається.","Я не лінивий. Я в режимі економії енергії. Особливо взимку.","Хтось: «Все буде добре». Я: «Це обіцянка чи загроза?»","Кажуть, час лікує. Але рахунок виставляє окремо.","Дорослість: радієш, що на вихідних нікуди не треба йти. Особливо якщо це правда.","Дієта: я забрав тарілку в іншу кімнату. Мозок: «Ну, ходімо».","Ранок добрий лише для тих, хто його не бачив.","Моя кредитка живе краще за мене: регулярно відпочиває в мінусі.","Завтра точно почну. Завтра така гарна дата, їй ніколи не відмовляють.","Ліфт зламався. Тепер у мене кардіо без згоди.","Лікар: «Вам треба більше рухатись». Я: «Так, до холодильника і назад».","Усі кажуть «бережи себе». Було б від чого й від кого.","Кіт дивиться на мене з презирством, ніби я винен перед ним усім світом. І, мабуть, винен.","Я не прокрастинатор. Я даю справам дозріти.","Мій банківський рахунок практикує мінімалізм: дуже мало всього.","Чорний гумор як їжа: не всім заходить, особливо після півночі.","Мій план Б такий самий, як план А, тільки з сумнівами.","Сказав «ще п’ять хвилин». Це були найдовші п’ять годин мого життя.","Люди діляться на тих, хто сказав «потім», і тих, хто цього «потім» теж не зробив.","Будильник має віру в мене, якої я сам не маю.","Мій пароль не можу згадати, але образу десятирічної давнини пам’ятаю дослівно.","Нічого так не мотивує, як дедлайн і відчуття, що життя минає.","Зима: коли бажання вийти з дому конкурує з бажанням не жити в сугробі.","Здоровий сон: вісім годин, які я збираюсь поспати вже з вівторка.","Кажуть, найкращі ідеї приходять уночі. Та самі й залишаються там до ранку.","Вкрав у себе годину сну, щоб подивитись відео, як люди вчаться рано вставати."];
+var W1=["понеділок","вихідні","нове життя","літо","зиму","кінець місяця","ранок","відпустку","Новий рік","наступний тиждень","вечір","суботу","завтра","цей рік","весну","обідню перерву","свята","після зарплати","ніч","четвер","п’ятницю","осінь","сьогодні","пенсію","після дедлайну"];
+var W2=["почати бігати","вивчити англійську","лягти спати о 22:00","не їсти солодке","прибрати вдома","відкласти гроші","розібрати пошту","дізнатись сенс життя","писати щодня","стати організованим","не гортати телефон","випити два літри води","змінити себе","відремонтувати все самому","стати мінімалістом","піти в спортзал","зателефонувати всім","навчитись медитувати","не сперечатись в інтернеті","вставати о п’ятій"];
+var W3=["дивлюся в стелю","купив ще один абонемент","їм печиво","вирішив, що завтра","сплю","роблю вигляд, що зайнятий","переглядаю відео з котами","пишу список справ замість справ","засинаю на п’ятій хвилині","купив книжку про це","дивлюсь серіал","усе по-старому, але з чаєм","нічого не змінилось, крім настрою","пишу собі листа з вибаченнями","планую новий план","кіт переміг","ображаюсь на будильник","роблю фото для відчуття прогресу","задоволений собою без жодних підстав","чекаю понеділка"];
+var EM=["😏","🙃","💀","🙄","😅","🤡","🫠"],md=0,cur="";
+function pk(a){return a[Math.floor(Math.random()*a.length)]}
+function show(){var e,t,n;if(md==0){e=J[ji][0];t=J[ji][1];n=(ji+1)+" / "+J.length}else{e=pk(EM);if(Math.random()<.3){t=pk(SJ);n="Вибране"}else{t="Мій план на "+pk(W1)+": "+pk(W2)+". Результат: "+pk(W3)+".";n="Із 10 000 комбінацій"}}cur=e+" "+t;$("je").textContent=e;$("jt").textContent=t;$("jn").textContent=n}
+$("jm").onclick=function(){if(md==0)ji=(ji+1+Math.floor(Math.random()*(J.length-1)))%J.length;show()};
+$("js").onclick=function(){try{if(navigator.share){navigator.share({text:cur});return}}catch(e){}try{navigator.clipboard.writeText(cur);$("jn").textContent="Скопійовано"}catch(e){}};
+J=J.concat([["🫖","Тепла чашка в руках — найдешевша терапія з доставкою додому."],["🐾","Кіт не питає, як ваші справи. Він просто мурчить, і цього вистачає."],["🌟","Маленькі кроки теж ведуть до мети. Навіть у капцях."],["🧁","Навіть найгірший день закінчується. Часом смачним печивом."],["🎧","Одна улюблена пісня лікує не гірше за таблетку."],["🤝","Добре слово в чаті важить більше, ніж здається."],["🌅","Після найтемнішої ночі все одно приходить ранок. Навіть у понеділок."],["🧡","Ви теж заслуговуєте на відпочинок. Прямо зараз."],["🪴","Навіть кактус цвіте, якщо його не ображати. Ви теж."],["🍯","Мед, чай і тиша: рецепт без побічних ефектів."]]);
+SJ=SJ.concat(["Зима — час, коли навіть оптимізм ходить у двох светрах.","Ні, я не мерзну. Я просто перевіряю, скільки витримаю.","Моя соціальна активність: відповів «хаха» в чаті.","Вирішив бути продуктивним. Поки що шукаю, як це зробити.","Люблю ранки. Особливо ті, що наступають після обіду.","Я не спізнююсь. Я прибуваю модно непередбачувано.","Справжня дружба — це коли мовчки ділишся павербанком.","У мене немає проблем. Є захопливі виклики з поганим настроєм.","Кіт сів на клавіатуру. Тепер це спільний проєкт.","Будильник дзвонить так, ніби я йому винен.","Нічого не робити теж вимагає зусиль. Особливо коли совість дивиться.","Мій графік сну такий ідеальний, що його неможливо дотримуватись."]);
+var A3=["хочу одну печеньку","сьогодні лягаю рано","починаю економити","лише гляну одне відео","почну з понеділка","не їм після шостої","куплю лише хліб","йду на пробіжку","лише п’ять хвилин","нікому не відповідаю","буду добрим до всіх","все під контролем","пишу план життя","роблю прибирання","вирішив стати дорослим","не беру телефон у ліжко","більше не прокрастинуватиму","п’ю воду щодня","вчусь на помилках","лише одним оком гляну новини"];
+var B3=["з’їдає всю пачку","засинає о четвертій ранку","замовляє піцу","дивиться третій серіал поспіль","переносить усе на вівторок","шукає диван","ігнорує будильник","їсть о другій ночі","вимагає ще одну ковдру","вдає, що не чує","скаржиться кішці","пише «завтра» в нотатках","смикає телефон кожні п’ять хвилин","наполягає, що це нормально","обіцяє почати завтра","вивчає стелю","купує ще один абонемент","влаштовує марафон під ковдрою","гальмує на рівному місці","об’єднується з холодильником"];
+var C3=["плаче тихо","пішов у відпустку без мене","показує мінус","просить пощади","прикидається мертвим","вибачається перед банком","працює в режимі економії","шукає роботу","чекає зарплату","думає про вічне","взяв вихідний","молиться на кешбек","живе в минулому місяці","тримається на чесному слові","дивиться на мене з осудом","пакує валізи","пише заповіт","вже подав на розлучення","підсумовує, що ми різні","вчиться не існувати"];
+var GA=["випити теплого чаю","обійняти кота чи близьку людину","відчинити вікно на хвилину","потягнутись","послухати улюблену пісню","посміхнутись у дзеркало","поговорити з другом","вмитись теплою водою","з’їсти щось смачне","вийти на подвір’я","натягнути м’які шкарпетки","написати добре слово комусь","випрямити спину","увімкнути лампу","заварити каву","подивитись у небо","потанцювати на кухні","розім’яти плечі","стати босими ногами на килим","закутатись у плед"];
+var GB=["відкласти телефон","записати три хороші речі","погладити кота","подзвонити мамі","замінити новини музикою","приготувати суп","вимити чашку без поспіху","порахувати до десяти","вдихнути на чотири, видихнути на шість","сказати «дякую»","піти в душ","назвати п’ять речей, за які вдячні","прибрати один куточок","пограти з дитиною","помиритись із собою","знайти гарне відео","зробити перерву","посміхнутись сусіду","розкласти справи на малі кроки","заплющити очі на хвилину"];
+var GC=["воду","чай","обійми","сон","небо","добре слово","друзів","ковдру","сміх","паузу","лампу","подяку","свій подих","ніжність","тишу","маленькі перемоги","тепле слово","музику","ранок","себе"];
+var EG=["🌞","☕","🐈","🧦","🌿","🍯","🎶","🤗","🫶"];
+function sarc(){var r=Math.random();if(r<.15)return pk(SJ);if(r<.6)return "Мій план на "+pk(W1)+": "+pk(W2)+". Результат: "+pk(W3)+".";return "Я: "+pk(A3)+". Мій організм: "+pk(B3)+". Мій гаманець: "+pk(C3)+"."}
+show=function(){var e,t,m=md;if(m==2)m=Math.random()<.5?0:1;if(m==0){if(Math.random()<.25){var q=pk(J);e=q[0];t=q[1]}else{e=pk(EG);t="Секрет гарного дня: "+pk(GA)+", потім "+pk(GB)+", і не забути про "+pk(GC)+"."}}else{e=pk(EM);t=sarc()}cur=e+" "+t;$("je").textContent=e;$("jt").textContent=t;$("jn").textContent="26 000+ варіантів"};
+function setM(k){md=k;show()}
+$("jm").onclick=function(){show()};
+md=2;kk();setM(2);
+var T=null,orb=$("orb"),bs=$("bs");
+function cyc(){orb.className="orb in";orb.textContent="Вдих";setTimeout(function(){if(T)orb.textContent="Пауза"},4000);setTimeout(function(){if(T){orb.className="orb out";orb.textContent="Видих"}},8000)}
+bs.onclick=function(){if(T){clearInterval(T);T=null;orb.className="orb";orb.textContent="Готові";bs.textContent="Почати";return}bs.textContent="Зупинити";T=setInterval(cyc,14000);cyc()};
+</script>
+</body>
+</html>
